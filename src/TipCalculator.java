@@ -1,8 +1,10 @@
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
-public class Main {
+public class TipCalculator {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        DecimalFormat formatter = new DecimalFormat("#.##");
 
         System.out.println("Welcome to a tip calculator");
 
@@ -12,11 +14,12 @@ public class Main {
         scan.nextLine();
 
         System.out.print("Enter the tip percentage without the percent sign: ");
-        double percentage = scan.nextDouble()/100;
+        double percentage = scan.nextDouble();
+        scan.nextLine();
         while (percentage < 0) {
             System.out.println("A tip percentage can not be negative.");
             System.out.print("Enter the tip percentage without the percent sign: ");
-            percentage = scan.nextDouble()/100;
+            percentage = scan.nextDouble();
             scan.nextLine();
             }
 
@@ -26,14 +29,26 @@ public class Main {
             money +=adding;
             System.out.print("Enter a cost in dollars and cents (-1 to end): ");
             adding = scan.nextDouble();
+            scan.nextLine();
         }
 
+        //math
+        double tip = (percentage/100)*money;
+        double totalBill = tip+money;
+        double costPerPerson = money/people;
+        double tipPerPerson = tip/people;
+        double totalCostPerPerson = totalBill/people;
 
-        //printing
+
+        //print
         System.out.println("------------------------------------");
         System.out.println("Total bill before tip: $" + money);
-
-
+        System.out.println("Tip percentage: "+ percentage+"%");
+        System.out.println("Total tip: $" + formatter.format (tip));
+        System.out.println("Total bill with tip: $"+formatter.format(totalBill));
+        System.out.println("Per person cost before tip: $"+formatter.format(costPerPerson));
+        System.out.println("Tip per person: $"+formatter.format(tipPerPerson));
+        System.out.println("Total cost per person: $"+formatter.format(totalCostPerPerson));
 
         }
 
