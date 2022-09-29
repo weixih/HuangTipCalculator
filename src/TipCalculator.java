@@ -16,7 +16,6 @@ public class TipCalculator {
         System.out.print("Enter the tip percentage without the percent sign: ");
         int percentage = scan.nextInt();
         scan.nextLine();
-
         //no negative tip percentage
         while (percentage < 0) {
             System.out.println("A tip percentage can not be negative.");
@@ -32,13 +31,14 @@ public class TipCalculator {
             money +=adding;
             System.out.print("Enter a cost in dollars and cents (-1 to end): ");
             adding = scan.nextDouble();
+            scan.nextLine();
+            //no negative costs
             if((adding <0) && (adding != -1)) {
-                adding = 0;
                 System.out.println("The costs can not be negative.");
                 System.out.print("Enter a cost in dollars and cents (-1 to end): ");
                 adding = scan.nextDouble();
+                scan.nextLine();
             }
-            scan.nextLine();
         }
 
         //math
